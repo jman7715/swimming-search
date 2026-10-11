@@ -3,7 +3,7 @@ const xlsx = require('xlsx');
 const path = require('path');
 const fs = require('fs'); // 파일 읽기를 위한 fs 모듈 추가
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname)));
