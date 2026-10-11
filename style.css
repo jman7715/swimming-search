@@ -1,0 +1,181 @@
+/* ==========================================
+   1. 전체 페이지 기본 설정 (배경 및 폰트)
+   ========================================== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f6f8; /* 은은한 회색 배경 */
+    color: #333;               /* 기본 글자 색상 */
+}
+
+/* ==========================================
+   2. 메인 컨테이너 박스 (화면 중앙 정렬 카드)
+   ========================================== */
+.container {
+    max-width: 95%; /* 화면 폭을 넓게 사용 */
+    margin: 0 auto;
+    background: white;
+    padding: 20px 10px; /* 위아래는 20px, 좌우 안쪽 여백은 10px로 대폭 축소 */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================
+   3. 메인 타이틀 (제목 텍스트)
+   ========================================== */
+h2 {
+    font-size: 32px; /* 1.5배 확대된 제목 크기 */
+    text-align: center;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+}
+
+/* ==========================================
+   4. 입력 폼 그룹 및 라벨 설정
+   ========================================== */
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 22px; /* 1.5배 확대된 라벨 크기 */
+    font-weight: bold;
+    color: #444;
+}
+
+/* ==========================================
+   5. 입력창 (Input Field) 디자인 (1.5배 확대)
+   ========================================== */
+input {
+    width: 100%;
+    height: 72px;        /* 손가락으로 누르기 편한 높이 */
+    padding: 0 18px;
+    font-size: 26px;     /* 입력 글자 크기 1.5배 확대 */
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+/* 입력창 클릭(포커스) 시 테두리 강조 효과 */
+input:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+}
+
+/* ==========================================
+   6. 조회하기 버튼 디자인 (1.5배 확대)
+   ========================================== */
+button {
+    width: 100%;
+    height: 75px;        /* 버튼 높이 1.5배 확대 */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 26px;     /* 버튼 텍스트 크기 1.5배 확대 */
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.2s;
+}
+
+/* 버튼을 터치/클릭할 때 색상 변경 */
+button:active {
+    background-color: #0056b3;
+}
+
+/* ==========================================
+   7. 선수 정보 조회 성공 결과 박스 (1.5배 확대)
+   ========================================== */
+.result-box {
+    margin-top: 25px;
+    padding: 30px;
+    background: #e9ecef;
+    border-radius: 10px;
+}
+
+.result-box h3 {
+    margin-top: 0;
+    font-size: 30px;     /* 결과 제목 크기 확대 */
+    color: #004085;
+}
+
+.result-box p {
+    font-size: 24px;     /* 결과 정보 텍스트 크기 1.5배 확대 */
+    margin: 18px 0;      /* 항목 간 간격 넓힘 */
+    line-height: 1.6;
+}
+
+/* ==========================================
+   8. 선수 정보 조회 실패 (오류) 박스 (1.5배 확대)
+   ========================================== */
+.error-box {
+    margin-top: 25px;
+    padding: 30px;
+    background: #f8d7da;
+    color: #721c24;
+    border-radius: 10px;
+    font-size: 24px;     /* 오류 텍스트 크기 확대 */
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   9. 공지사항 박스 디자인
+   ========================================== */
+.notice {
+    margin-top: 30px;
+    padding: 20px;
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 10px;
+    font-size: 20px;      /* 1.5배 확대 */
+}
+
+.notice h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #856404;
+}
+
+/* ==========================================
+   10. 안내 이미지 영역 디자인
+   ========================================== */
+.images {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.images h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.images img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+/* ==========================================
+   11. 돌아가기 버튼 (링크형 버튼) 디자인
+   ========================================== */
+.back-btn {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+    text-decoration: none;
+    background-color: #6c757d;
+    color: white;
+    height: 70px;        /* 높이 확대 */
+    line-height: 70px;   /* 글자 수직 중앙 정렬 */
+    border-radius: 10px;
+    font-size: 24px;     /* 글자 크기 1.5배 확대 */
+    font-weight: bold;
+}

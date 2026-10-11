@@ -1,0 +1,15 @@
+대회 당일 주차장은 혼잡하오니 대중교통을 이용해 주세요.
+문의 사항은 운영본부(010-0000-0000)로 연락 바랍니다.
+
+안녕하세요! 수영대회 안내입니다.
+1. 경기 시작 30분 전까지 도착해 주세요.
+2. 주차장은 공영주차장을 이용해 주시기 바랍니다.
+오늘도 좋은 하루 보내세요!
+
+일반 공지 내용입니다.
+<span style="color: red; font-weight: bold;">[필독] 경기 시작 30분 전 집결!</span>
+
+<span style="font-size: 24px; color: blue;">중요 안내 사항</span>
+주차장은 반드시 지정된 구역에 대주세요.
+
+지각 시 <span style="background-color: yellow; font-weight: bold;">실격 처리</span>될 수 있습니다.
