@@ -25,12 +25,12 @@ app.get('/', (req, res) => {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>수영대회 대진 확인</title>
+            <title>2026 아쿠아 마라톤 대진</title>
             <link rel="stylesheet" href="/style.css">
         </head>
         <body>
             <div class="container">
-                <h2>수영대회 대진 확인</h2>
+                <h2>2026 아쿠아 마라톤 대진</h2>
                 <form action="/search" method="POST">
                     <div class="form-group">
                         <label for="name">선수 이름</label>
@@ -88,13 +88,13 @@ app.post('/search', (req, res) => {
 
             resultHtml = `
                 <div class="result-box">
-                    <h3>[ 선수 정보 조회 결과 ]</h3>
+                    <h3>[ 선수 정보 ]</h3>
                     <p><strong>이름:</strong> ${name}</p>
                     <p><strong>성별:</strong> ${gender}</p>
                     <p><strong>종목:</strong> ${game}</p>
-                    <p><strong>경기 번호:</strong> ${matchNo}</p>
+                    <p><strong>경기 번호:</strong> 제 ${matchNo} 경기</p>
                     <p><strong>등번호:</strong> ${bNo}</p>
-                    <p><strong>대기 시간:</strong> ${standbyTime}</p>
+                    <p><strong>등록 시간:</strong> ${standbyTime}</p>
                     <p><strong>경기 시간:</strong> ${startTime}</p>
                 </div>
             `;
@@ -127,7 +127,7 @@ app.post('/search', (req, res) => {
             </head>
             <body>
                 <div class="container">
-                    <h2>수영대회 대진 확인</h2>
+                    <h2>2026 아쿠아 마라톤 대진</h2>
                     ${resultHtml}
                     
                     <div class="notice">

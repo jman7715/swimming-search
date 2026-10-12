@@ -4,7 +4,7 @@
   "description": "Swimmer search app",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server_entry.js"
   },
   "dependencies": {
     "express": "^4.19.2",
