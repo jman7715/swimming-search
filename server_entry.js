@@ -71,6 +71,7 @@ app.post('/search', (req, res) => {
             const sportGame = foundRow[6] || ''; // 희망 종목 (G열 / 인덱스 6)
             const expectedRecord = foundRow[7] || ''; // 예상기록 (H열 / 인덱스 7)
             const shirt = foundRow[8] || '';     // 셔츠 (I열 / 인덱스 8)
+            const entryFee = foundRow[9] || '';     // 셔츠 (J열 / 인덱스 9)
 
             resultHtml = `
                 <div class="result-box">
@@ -82,6 +83,7 @@ app.post('/search', (req, res) => {
                     <p><strong>희망 종목:</strong> ${sportGame}</p>
                     <p><strong>예상 기록:</strong> ${expectedRecord}</p>
                     <p><strong>셔츠:</strong> ${shirt}</p>
+                    <p><strong>참가비:</strong> ${entryFee}</p>
                 </div>
             `;
         } else {
