@@ -46,7 +46,7 @@ app.post('/search', (req, res) => {
 
     try {
         const workbook = xlsx.readFile('swimmers.xlsx'); 
-        const sheetName = workbook.SheetNames[0];
+        const sheetName = '선수명단';
         const sheet = workbook.Sheets[sheetName];
         
         // 항목명(헤더)을 키값으로 하는 객체 배열 형태로 변환
