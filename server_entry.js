@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
         </head>
         <body>
             <div class="container">
-                <h2>신청자 명단 조회</h2>
+                <h2>신청자 명단 조회 entry </h2>
                 <form action="/search" method="POST">
                     <div class="form-group">
                         <label for="name">이름</label>
@@ -49,14 +49,13 @@ app.post('/search', (req, res) => {
         const sheetName = workbook.SheetNames[0];
         const sheet = workbook.Sheets[sheetName];
         
-        const rows = xlsx.utils.sheet_to_json(sheet, { header: 1 });
-        const dataRows = rows.slice(1); // 1행(헤더) 제외하고 2행부터 데이터로 취급
+        // 항목명(헤더)을 키값으로 하는 객체 배열 형태로 변환
+        const dataRows = xlsx.utils.sheet_to_json(sheet);
 
-        // 엑셀 열 인덱스 기준: 
-        // A열(0): 접수일시, B열(1): 이름, D열(3): 연락처뒤4자리
+        // 항목명 기준으로 데이터 찾기
         const foundRow = dataRows.find(row => {
-            const rowName = String(row[1] || '').trim(); 
-            const rawPhone = String(row[3] || '').trim(); 
+            const rowName = String(row['이름'] || '').trim(); 
+            const rawPhone = String(row['연락처'] || row['연락처4'] || '').trim(); 
             const rowPhone4 = rawPhone.slice(-4).padStart(4, '0'); // 뒤 4자리 추출 보장
 
             return rowName === inputName && rowPhone4 === inputPhone4;
@@ -64,14 +63,14 @@ app.post('/search', (req, res) => {
 
         let resultHtml = '';
         if (foundRow) {
-            const regDate = foundRow[0] || '';   // 접수일시 (A열 / 인덱스 0)
-            const name = foundRow[1] || '';      // 이름 (B열 / 인덱스 1)
-            const gender = foundRow[4] || '';    // 성별 (E열 / 인덱스 4)
-            const team = foundRow[5] || '';      // 소속 (F열 / 인덱스 5)
-            const sportGame = foundRow[6] || ''; // 희망 종목 (G열 / 인덱스 6)
-            const expectedRecord = foundRow[7] || ''; // 예상기록 (H열 / 인덱스 7)
-            const shirt = foundRow[8] || '';     // 셔츠 (I열 / 인덱스 8)
-            const entryFee = foundRow[9] || '';     // 셔츠 (J열 / 인덱스 9)
+            const regDate = foundRow['접수날짜'] || ''; 
+            const name = foundRow['이름'] || ''; 
+            const gender = foundRow['성별'] || ''; 
+            const club = foundRow['소속'] || ''; 
+            const desiredEvent = foundRow['희망종목'] || ''; 
+            const expectedTime = foundRow['예상기록'] || ''; 
+            const souvenir1 = foundRow['기념품1'] || ''; 
+            const entryFee = foundRow['참가비'] || ''; 
 
             resultHtml = `
                 <div class="result-box">
@@ -79,10 +78,10 @@ app.post('/search', (req, res) => {
                     <p><strong>접수일시:</strong> ${regDate}</p>
                     <p><strong>이름:</strong> ${name}</p>
                     <p><strong>성별:</strong> ${gender}</p>
-                    <p><strong>소속:</strong> ${team}</p>
-                    <p><strong>희망 종목:</strong> ${sportGame}</p>
-                    <p><strong>예상 기록:</strong> ${expectedRecord}</p>
-                    <p><strong>셔츠:</strong> ${shirt}</p>
+                    <p><strong>소속:</strong> ${club}</p>
+                    <p><strong>희망 종목:</strong> ${desiredEvent}</p>
+                    <p><strong>예상 기록:</strong> ${expectedTime}</p>
+                    <p><strong>셔츠:</strong> ${souvenir1}</p>
                     <p><strong>참가비:</strong> ${entryFee}</p>
                 </div>
             `;
@@ -110,12 +109,12 @@ app.post('/search', (req, res) => {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>신청자 조회 결과</title>
+                <title>신청자 조회 결과 </title>
                 <link rel="stylesheet" href="/style.css">
             </head>
             <body>
                 <div class="container">
-                    <h2>신청자 명단 조회 결과</h2>
+                    <h2>신청자 명단 조회 결과 entry</h2>
                     ${resultHtml}
                     
                     <div class="notice">
