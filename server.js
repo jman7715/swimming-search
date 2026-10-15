@@ -54,37 +54,37 @@ app.post('/search', (req, res) => {
     const inputPhone4 = req.body.phone4.trim().padStart(4, '0');
 
     try {
-        const workbook = xlsx.readFile('swimmer.xlsx'); 
+        const workbook = xlsx.readFile('swimmers.xlsx'); 
         const sheetName = workbook.SheetNames[0];
         const sheet = workbook.Sheets[sheetName];
         
-        const rows = xlsx.utils.sheet_to_json(sheet, { header: 1 });
-        const dataRows = rows.slice(1);
+        // 항목명(헤더)을 키값으로 하는 객체 배열 형태로 변환
+        const dataRows = xlsx.utils.sheet_to_json(sheet);
 
-        // 이름(C열/인덱스 2)과 전화번호 뒤 4자리(L열/인덱스 11) 일치하는 행 찾기
+        // 이름과 전화번호 뒤 4자리가 일치하는 행 찾기
         const foundRow = dataRows.find(row => {
-            const rowName = String(row[2] || '').trim(); 
-            const rawPhone = String(row[11] || '').trim(); 
-            const rowPhone4 = rawPhone.padStart(4, '0');
+            const rowName = String(row['이름'] || '').trim(); 
+            const rawPhone = String(row['연락처4'] || row['연락처'] || '').trim(); 
+            const rowPhone4 = rawPhone.slice(-4).padStart(4, '0');
 
             return rowName === inputName && rowPhone4 === inputPhone4;
         });
 
         let resultHtml = '';
         if (foundRow) {
-            const name = foundRow[2] || '';          // 이름 (인덱스 2)
-            const gender = foundRow[4] || '';        // 성별 (인덱스 4)
+            const name = foundRow['이름'] || '';           // 이름
+            const gender = foundRow['성별'] || '';         // 성별
             
-            // 종목 (인덱스 7): 숫자인 경우 천단위 콤마 및 'm' 추가 (예: 5000 -> 5,000m)
-            let game = foundRow[7] || '';
+            // 종목: 숫자인 경우 천단위 콤마 및 'm' 추가 (예: 5000 -> 5,000m)
+            let game = foundRow['종목'] || '';
             if (!isNaN(game) && game !== '') {
                 game = Number(game).toLocaleString() + 'm';
             }
 
-            const matchNo = foundRow[8] || '';       // 경기 (인덱스 8)
-            const bNo = foundRow[1] || '';           // 등번호 (인덱스 1)
-            const standbyTime = excelTimeToStr(foundRow[12]); // 대기 시간 (인덱스 12)
-            const startTime = excelTimeToStr(foundRow[13]);   // 경기 시간 (인덱스 13)
+            const matchNo = foundRow['경기번호'] || '';    // 경기번호
+            const bNo = foundRow['등번호'] || '';          // 등번호
+            const standbyTime = excelTimeToStr(foundRow['등록시간']); // 등록시간
+            const startTime = excelTimeToStr(foundRow['경기시간']);   // 경기시간
 
             resultHtml = `
                 <div class="result-box">
@@ -152,7 +152,7 @@ app.post('/search', (req, res) => {
         res.send(`
             <div style="margin: 40px; font-family: Arial; text-align: center;">
                 <h3>오류가 발생했습니다.</h3>
-                <p>엑셀 파일 이름(swimmer.xlsx)이 올바른지 확인해주세요.</p>
+                <p>엑셀 파일 이름(swimmers.xlsx)이 올바른지 확인해주세요.</p>
                 <a href="/">돌아가기</a>
             </div>
         `);

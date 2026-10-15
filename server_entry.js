@@ -45,7 +45,7 @@ app.post('/search', (req, res) => {
     const inputPhone4 = req.body.phone4.trim().padStart(4, '0');
 
     try {
-        const workbook = xlsx.readFile('entry_list.xlsx'); 
+        const workbook = xlsx.readFile('swimmers.xlsx'); 
         const sheetName = workbook.SheetNames[0];
         const sheet = workbook.Sheets[sheetName];
         
@@ -66,11 +66,11 @@ app.post('/search', (req, res) => {
             const regDate = foundRow['접수날짜'] || ''; 
             const name = foundRow['이름'] || ''; 
             const gender = foundRow['성별'] || ''; 
-            const club = foundRow['소속'] || ''; 
+            const club = foundRow['소속클럽'] || ''; 
             const desiredEvent = foundRow['희망종목'] || ''; 
             const expectedTime = foundRow['예상기록'] || ''; 
             const souvenir1 = foundRow['기념품1'] || ''; 
-            const entryFee = foundRow['참가비'] || ''; 
+            const entryFee = foundRow['참가비현황'] || ''; 
 
             resultHtml = `
                 <div class="result-box">
@@ -82,7 +82,7 @@ app.post('/search', (req, res) => {
                     <p><strong>희망 종목:</strong> ${desiredEvent}</p>
                     <p><strong>예상 기록:</strong> ${expectedTime}</p>
                     <p><strong>셔츠:</strong> ${souvenir1}</p>
-                    <p><strong>참가비:</strong> ${entryFee}</p>
+                    <p><strong>참가비현황:</strong> ${entryFee}</p>
                 </div>
             `;
         } else {
@@ -139,7 +139,7 @@ app.post('/search', (req, res) => {
         res.send(`
             <div style="margin: 40px; font-family: Arial; text-align: center;">
                 <h3>오류가 발생했습니다.</h3>
-                <p>엑셀 파일 이름(entry_list.xlsx)이 올바른지 확인해주세요.</p>
+                <p>엑셀 파일 이름(swimmers.xlsx)이 올바른지 확인해주세요.</p>
                 <a href="/">돌아가기</a>
             </div>
         `);
